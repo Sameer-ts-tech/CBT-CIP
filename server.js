@@ -6,9 +6,12 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js"
 import {v2 as cloudinary} from "cloudinary";
+import path from "path";
 
 dotenv.config();
 ConnectDB();
+
+let __dirname = path.resolve();
 
 const app = express();
 app.use(cors({
@@ -35,6 +38,13 @@ cloudinary.config({
 app.use("/api/users" , userRoutes);
 
 app.use("/api/posts" , postRoutes);
+
+
+app.use(express.static(path.join(__dirname , "thread-client" , "dist")));
+app.get("*", function(_, res) {
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  });
+  
 
 
 app.listen(PORT , ()=>{
