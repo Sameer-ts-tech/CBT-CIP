@@ -42,7 +42,7 @@ app.use("/api/posts" , postRoutes);
 
 app.use(express.static(path.join(__dirname , "thread-client" , "dist")));
 app.get("*", function(_, res) {
-    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "thread-client", "dist", "index.html"));
   });
   
 
