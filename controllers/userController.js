@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import Post from "../models/postModel.js";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 import generateTokenAndSetCookie from "../utils/generateTokenAndSetCookie.js";
 import {v2 as cloudinary} from "cloudinary";
 import mongoose from "mongoose";
@@ -21,10 +21,10 @@ const userController = ()=>{
                 }
 
                 const salt = await bcrypt.genSalt(10);
-                const hashedPassword = await bcrypt.hash(password , salt);
+                // const hashedPassword = await bcrypt.hash(password , salt);
 
                 const newUser = new User({
-                    name , email , username , password : hashedPassword,
+                    name , email , username , password
                 })
 
                 await newUser.save();
@@ -49,7 +49,8 @@ const userController = ()=>{
                 const user = await User.findOne({username});
                 if(!user) return res.json({error : "user not exsist"});
 
-                const isPasswordMatch = await bcrypt.compare(password , user.password);
+                // const isPasswordMatch = await bcrypt.compare(password , user.password);
+                const isPasswordMatch = password === user.password;
                 
                 if(!isPasswordMatch) return res.json({error : "password is wrong"});
 
@@ -142,9 +143,9 @@ const userController = ()=>{
             user.email = email || user.email;
 
             if(password){
-                const salt = await bcrypt.genSalt(10);
-                const hashedPassword = await bcrypt.hash(password , salt);
-                user.password = hashedPassword;
+                // const salt = await bcrypt.genSalt(10);
+                // const hashedPassword = await bcrypt.hash(password , salt);
+                user.password = password;
             }
 
             await user.save();
