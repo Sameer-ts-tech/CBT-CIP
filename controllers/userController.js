@@ -20,7 +20,7 @@ const userController = ()=>{
                     return res.json({error : "user already exsist"});
                 }
 
-                const salt = await bcrypt.genSalt(10);
+                // const salt = await bcrypt.genSalt(10);
                 // const hashedPassword = await bcrypt.hash(password , salt);
 
                 const newUser = new User({
