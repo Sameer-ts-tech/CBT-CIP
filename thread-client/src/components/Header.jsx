@@ -21,7 +21,7 @@ function Header() {
 
       {user?.username !== "_harsh" && <>
       <Flex justifyContent={"center"} alignItems={"center"} flexDirection={"column"}>
-      <Image onClick={()=> navigate("_harsh")} onMouseEnter={()=> setHover(true)} onMouseLeave={()=> setHover(false)} cursor={"pointer"} src="./_harsh.png" h={"auto"} w={"50px"} borderRadius={"full"}/>
+      {/* <Image onClick={()=> navigate("_harsh")} onMouseEnter={()=> setHover(true)} onMouseLeave={()=> setHover(false)} cursor={"pointer"} src="./_harsh.png" h={"auto"} w={"50px"} borderRadius={"full"}/> */}
       </Flex>
       </>}
 
